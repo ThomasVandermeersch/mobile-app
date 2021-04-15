@@ -28,6 +28,12 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      if(navigator.serviceWorker){
+        console.log('It works here')
+        navigator.serviceWorker.register('./sw.js')
+      }
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
