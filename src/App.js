@@ -1,15 +1,20 @@
 import './App.css';
-import Form from './components/Form';
+import Forme from './components/Forme';
+
+import Container  from 'react-bootstrap/Container'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App"
+>
+
+      <Container fluid="md">        
 
 
+      <Forme />
+      </Container>
 
-      <h1> Welcome to our project </h1>
-
-      <Form />
 
     </div>
   );
