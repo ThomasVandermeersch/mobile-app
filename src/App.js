@@ -7,7 +7,7 @@ function App() {
 
 
 
-      <h1> Welcome to our project </h1>
+      <h1> Welcome to our new project </h1>
 
       <Form />
 
