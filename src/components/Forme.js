@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import firebase from '../utils/firebase';
+import app from '../utils/firebase';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,7 +19,7 @@ export default function Forme() {
   };
 
   const createTodo = () => {
-    const todoRef = firebase.database().ref('Todo');
+    const todoRef = app.database().ref('Todo');
     const todo = {
       title,
       content
