@@ -8,15 +8,21 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Forme() {
   const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
-  const handleOnChange = (e) => {
+
+  const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
+  const handleContentChange = (e) =>{
+    setContent(e.target.value)
+  };
+
   const createTodo = () => {
     const todoRef = firebase.database().ref('Todo');
     const todo = {
       title,
-      complete: false,
+      content
     };
 
     todoRef.push(todo);
@@ -25,17 +31,17 @@ export default function Forme() {
     <div>
 
         <h2 style={{textAlign: "center"}}>Create a Tweet </h2>
-
+ 
 
         <Form>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Subject of your tweet</Form.Label>
-            <Form.Control type="text" placeholder="Enter a title here !" onChange={handleOnChange} value={title} />
+            <Form.Control type="text" placeholder="Enter a title here !" onChange={handleTitleChange} value={title} />
           </Form.Group>
         
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Your tweet</Form.Label>
-            <Form.Control as="textarea" rows={3} />
+            <Form.Control as="textarea" rows={3} onChange={handleContentChange} value={content} />
           </Form.Group>
         
           <Button variant="secondary" onClick={createTodo}> Submit !</Button>
