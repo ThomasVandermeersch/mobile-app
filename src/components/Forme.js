@@ -1,14 +1,16 @@
 
-import React, { useState } from 'react';
+import {React, useState } from 'react';
 import app from '../utils/firebase';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Redirect } from "react-router";
 
 
 export default function Forme() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [submit, setSubmit] = useState('')
 
 
   const handleTitleChange = (e) => {
@@ -17,16 +19,31 @@ export default function Forme() {
   const handleContentChange = (e) =>{
     setContent(e.target.value)
   };
-
+  var user = app.auth().currentUser;
+  if (user != null) {
+          console.log(user.displayName)
+  }
   const createTodo = () => {
-    const todoRef = app.database().ref('Todo');
+    var user = app.auth().currentUser.displayName;
+
+    const todoRef = app.database().ref('Tweets');
     const todo = {
       title,
-      content
+      content,
+      user
     };
 
     todoRef.push(todo);
+    console.log("Helllooo")
+    setSubmit(true)
   };
+
+  if(submit === true){
+    return(
+      <Redirect to="/"/>
+    )
+  }
+  
   return (
     <div>
 
