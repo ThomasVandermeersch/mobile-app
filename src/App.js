@@ -4,6 +4,7 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import UserProfile from './components/UserProfile'
 import Home from './components/Home'
+import SearchUser from './components/SearchUser'
 import Container  from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
@@ -26,6 +27,8 @@ function App() {
               <Route path="/login" component={Login}/>
               <Route path="/signup" component={SignUp}/>
               <PrivateRoute path="/userProfile/:name" component={UserProfile}/>
+              <PrivateRoute path="/searchUser" component={SearchUser}/>
+
               <PrivateRoute path="/" component={Home}/>
             </Switch>
           </Router>
