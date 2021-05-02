@@ -4,6 +4,13 @@ import {Link} from 'react-router-dom'
 
 
 export default function SingleTweet({tweet}) {
+    function removeItemFromArr(arr, value) {
+      var index = arr.indexOf(value);
+      if (index > -1) {
+        arr.splice(index, 1);
+      }
+      return arr;
+    }
 
     const likeTweet = () =>{
         let userName = app.auth().currentUser.displayName;
@@ -17,12 +24,23 @@ export default function SingleTweet({tweet}) {
             if(!likes.includes(userName)){
                 likes.push(userName)
             }
+            else{
+              removeItemFromArr(likes,userName)
+            }
         }
         const tweetRef = app.database().ref('Tweets').child(tweet.id);
         tweetRef.update({
             likes: likes
         })
     }
+
+
+  
+    const renderLikeText = () => {
+      if (tweet.userLike) return 'Unlike';
+      else return 'Like';
+    }
+      
 
 
     return (
@@ -39,7 +57,10 @@ export default function SingleTweet({tweet}) {
           <p>  {tweet.content} </p>
         <p>  {tweet.nbLikes} </p>
 
-          <button onClick={likeTweet}> Like it</button>
+          <button onClick={likeTweet}>
+            {renderLikeText()}
+          
+          </button>
          
   
       </div>

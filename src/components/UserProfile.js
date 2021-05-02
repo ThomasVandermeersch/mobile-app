@@ -9,6 +9,8 @@ import {
 
 export default function UserProfile() {
     let { name } = useParams();
+    var userName = app.auth().currentUser.displayName;
+
     const [tweetList,setTweetList] = useState();
 
     useEffect(()=>{
@@ -21,15 +23,21 @@ export default function UserProfile() {
             if(tweets[id].user === name ){
                 var nbLikes = 0;
                 //Verify that likes exsit
+                var userLike = false;
                 if(tweets[id].likes){
-                nbLikes = tweets[id].likes.length
+                  nbLikes = tweets[id].likes.length
+                  console.log(name)
+                  console.log(tweets[id].likes)
+                  if(tweets[id].likes.includes(userName)){
+                    userLike = true
+                  }
                 }
-                tweetList.push({id,nbLikes, ...tweets[id]});
+                tweetList.push({id,nbLikes,userLike, ...tweets[id]});
             }
           }
             setTweetList(tweetList);
         })
-      },[name])
+      },[name,userName])
     return (
         <div>
 
