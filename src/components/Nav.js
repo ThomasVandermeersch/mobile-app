@@ -1,17 +1,22 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Nav,Navbar} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {Link} from 'react-router-dom'
 
-export default function Nav() {
+export default function Navigation() {
   
+
     return (
         <div>
-            <nav>
-                <ul>
-                    <li> <Link to="/add">Add</Link> </li>
-                    <li> <Link to="/">Home</Link> </li>
-                </ul>
-        </nav>
+
+        <Navbar bg="dark" variant="dark"> 
+            <Nav className="mr-auto">
+                <li class="nav-item"> <Link to="/" class="nav-link active">Twitter</Link> </li>
+                <li class="nav-item"> <Link to="/add" class="nav-link active">New</Link> </li>
+                <li class="nav-item"> <Link to="/searchUser" class="nav-link active">Search</Link> </li>
+                <li class="nav-item"> <Link to="/" class="nav-link active">Profile</Link> </li>
+            </Nav>
+        </Navbar>
 
         </div>
     );

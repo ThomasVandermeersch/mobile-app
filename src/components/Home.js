@@ -1,9 +1,8 @@
 import {React, useEffect, useState } from "react";
 import app from "../utils/firebase";
-import Nav from './Nav'
+import ListGroup from 'react-bootstrap/ListGroup'
 import SingleTweet from './SingleTweet'
-import {Link} from 'react-router-dom'
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const Home = () => {
@@ -48,22 +47,16 @@ const Home = () => {
   },[userName])
 
   return (
-    <>
-        <Nav/>
-        <h2>Hello {userName} </h2>
+    <div>
 
-        <Link to="/searchUser">SEARCH A USER</Link>
+        <h2> Bonjour {userName} </h2>
 
-
-
-
-        <div> {tweetList ? tweetList.map((tweet,index)=> <SingleTweet tweet={tweet} key={index}/> ):''} </div>
+        <ListGroup>
+          {tweetList ? tweetList.map((tweet,index)=> <SingleTweet tweet={tweet} key={index}/> ):''}
+        </ListGroup>
         
         <button onClick={() => app.auth().signOut()}>Sign out</button>
-
-
-        
-    </>
+        </div>
   );
 };
 

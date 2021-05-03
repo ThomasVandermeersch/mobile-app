@@ -1,7 +1,8 @@
 import React,{} from 'react';
 import app from '../utils/firebase';
 import {Link} from 'react-router-dom'
-
+import ListGroup from 'react-bootstrap/ListGroup'
+import Button from 'react-bootstrap/Button'
 
 export default function SingleTweet({tweet}) {
     function removeItemFromArr(arr, value) {
@@ -37,32 +38,28 @@ export default function SingleTweet({tweet}) {
 
   
     const renderLikeText = () => {
-      if (tweet.userLike) return 'Unlike';
-      else return 'Like';
+      if (tweet.userLike) return (<Button variant="danger" onClick={likeTweet}> Unlike</Button>);
+      else return (<Button variant="success" onClick={likeTweet}> Likeee </Button>);
     }
       
 
 
     return (
-      <div>
+      <ListGroup.Item>
 
-          <h1> {tweet.title} </h1>
 
           <Link to={`/userProfile/${tweet.user}`}>
-            <h2> Tweet de {tweet.user} </h2>
+            <p> Tweet de {tweet.user} </p>
           </Link>
           
+          <h4> {tweet.title} </h4>
 
 
           <p>  {tweet.content} </p>
-        <p>  {tweet.nbLikes} </p>
+        <p>  {tweet.nbLikes}             {renderLikeText()}</p>
 
-          <button onClick={likeTweet}>
-            {renderLikeText()}
-          
-          </button>
-         
-  
-      </div>
-    );
+
+
+          </ListGroup.Item>
+      );
   }
