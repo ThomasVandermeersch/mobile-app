@@ -3,6 +3,9 @@ import { withRouter, Redirect } from "react-router";
 import app from "../utils/firebase.js";
 import { AuthContext } from "./Auth.js";
 import {Link} from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -29,21 +32,25 @@ const Login = ({ history }) => {
 
   return (
     <div>
-      <h1>Log in</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Log in</button>
-      </form>
 
-    
-    <Link to="/SignUp"><button>Create Account</button></Link> 
+      <h2 style={{textAlign: "center"}}>Sign in </h2>
+  
+      <Form onSubmit={handleLogin}>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Label>Email</Form.Label>
+          <Form.Control name="email" type="email" placeholder="Enter your email"/>
+        </Form.Group>
+      
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Label> Password</Form.Label>
+          <Form.Control name="password" type="password" placeholder="Enter your password" />
+        </Form.Group>
+
+        <Button variant="success" type="submit" size="lg" block> Sign in </Button>
+      </Form>
+      <br></br>
+      <Link to="/SignUp"> <Button variant="warning" size="lg" block> Create an account</Button> </Link>
+
 
     </div>
   );

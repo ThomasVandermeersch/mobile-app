@@ -21,7 +21,6 @@ function App() {
       <Container fluid="md">
         <AuthProvider>
           <Router>
-            <h1> Bienvenue sur Twitter </h1>
             <Switch>
               <PrivateRoute path="/add" component={Forme}/>
               <Route path="/login" component={Login}/>

@@ -2,6 +2,9 @@ import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../utils/firebase";
 import {Link} from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -44,24 +47,33 @@ const SignUp = ({ history }) => {
 
   return (
     <div>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSignUp}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Pseudo
-          <input name="name" type="text" placeholder="Name" />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-      <Link to="/Login"><button>Connect to existing account</button></Link> 
+
+      <h2 style={{textAlign: "center"}}>Create account </h2>
+      
+      <Form onSubmit={handleSignUp}>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Label>Email</Form.Label>
+          <Form.Control name="email" type="email" placeholder="Enter your email"/>
+        </Form.Group>
+
+      
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label> Pseudo </Form.Label>
+        <Form.Control name="name" type="text" placeholder="Enter your pseudo" />
+      </Form.Group>
+      
+      
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label> Password</Form.Label>
+        <Form.Control name="password" type="password" placeholder="Enter your password" />
+      </Form.Group>
+
+        <Button variant="success" type="submit" size="lg" block> Create account ! </Button>
+      </Form>
+      <br></br>
+      <Link to="/Login"> <Button variant="warning" size="lg" block> Back to log in </Button> </Link>
     </div>
+
   );
 };
 
