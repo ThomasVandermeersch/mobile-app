@@ -58,7 +58,7 @@ export default function UserProfile() {
             const users = snapshot.val()
             console.log(users)
             for(let userID in users ){
-              if(users[userID].name == userName){
+              if(users[userID].name === userName){
                 // console.log(name)
                 // console.log(users[userID].name)
                 
