@@ -20,29 +20,42 @@ const Home = () => {
   }
 
 
-
-
-    
-  
-
   useEffect(()=>{
-    const todoRef = app.database().ref('Tweets');
-    todoRef.on('value',(snapchot)=>{
+    const tweetRef = app.database().ref('Tweets');
+    tweetRef.on('value',(snapchot)=>{
       const tweets = snapchot.val()
       const tweetList = []
-      for(let id in tweets ){
-        var nbLikes = 0;
-        var userLike = false;
-        //Verify that likes exsit
-        if(tweets[id].likes){
-          nbLikes = tweets[id].likes.length
-          if(tweets[id].likes.includes(userName)){
-            userLike = true
+      
+      //Cherche notre propre user dans la database
+      const usersRef = app.database().ref('Users');
+      usersRef.on('value',(snapshot)=>{
+        const users = snapshot.val()
+        var followList = null
+        for(let userID in users ){
+          if(users[userID].name === userName){
+            followList = users[userID].follow
           }
         }
-        tweetList.push({id,nbLikes,userLike, ...tweets[id]});
-      }
+        console.log(followList)
+     
+        for(let id in tweets ){
+
+          if(followList.includes(tweets[id].user)){
+            console.log("Yes")
+            var nbLikes = 0;
+            var userLike = false;
+            //Verify that likes exsit
+            if(tweets[id].likes){
+              nbLikes = tweets[id].likes.length
+              if(tweets[id].likes.includes(userName)){
+                userLike = true
+              }
+            }
+            tweetList.push({id,nbLikes,userLike, ...tweets[id]});
+          }
+        }
         setTweetList(tweetList);
+       })  
     })
   },[userName])
 
