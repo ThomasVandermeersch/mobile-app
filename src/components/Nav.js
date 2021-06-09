@@ -14,7 +14,6 @@ export default function Navigation() {
                 <li class="nav-item"> <Link to="/" class="nav-link active">Twitter</Link> </li>
                 <li class="nav-item"> <Link to="/add" class="nav-link active">New</Link> </li>
                 <li class="nav-item"> <Link to="/searchUser" class="nav-link active">Search</Link> </li>
-                <li class="nav-item"> <Link to="/" class="nav-link active">Profile</Link> </li>
             </Nav>
         </Navbar>
 

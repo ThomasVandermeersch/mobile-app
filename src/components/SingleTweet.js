@@ -51,10 +51,11 @@ export default function SingleTweet({tweet}) {
           </Link>
           
           <h4> {tweet.title} </h4>
-          <img height="360" src={tweet.imgUrl} alt="Donald Trump"></img>
-
-
           <p>  {tweet.content} </p>
+
+          <img width="300" src={tweet.imgUrl} alt=""></img>
+
+
         <p>  {tweet.nbLikes}             {renderLikeText()}</p>
 
 
