@@ -1,6 +1,7 @@
 import {React, useEffect, useState } from "react";
 import app from "../utils/firebase";
 import SingleTweet from './SingleTweet'
+import Button from 'react-bootstrap/Button'
 
 import {
     useParams
@@ -38,9 +39,57 @@ export default function UserProfile() {
             setTweetList(tweetList);
         })
       },[name,userName])
+
+      const followUser = async () =>{
+        let userName = app.auth().currentUser.displayName; //retrouver notre nom de user
+        //const userRef = app.database().ref('Users').orderByChild("name").equalTo(userName)  
+        
+        // Create a reference to the cities collectionconst
+
+        const usersRef = app.database().ref('Users');
+        var updated = false;
+
+        usersRef.on('value',(snapshot)=>{
+          console.log(updated)
+          if(!updated){
+            updated = true
+
+            console.log("coucou je rentre")
+            const users = snapshot.val()
+            console.log(users)
+            for(let userID in users ){
+              if(users[userID].name == userName){
+                // console.log(name)
+                // console.log(users[userID].name)
+                
+                const followedPersons = users[userID].follow
+                
+                followedPersons.push(name)
+                
+                const userRef = app.database().ref('Users').child(userID);
+
+                userRef.update({
+                  follow: followedPersons
+              })
+              }
+            }
+          }
+          else{
+            console.log("hello")
+          }
+        })
+  
+
+    }
+
+      const renderFollowText = () => {
+        if (false) return (<Button variant="danger" onClick={followUser}> Unfollow</Button>);
+        else return (<Button variant="success" onClick={followUser}> Follow </Button>);
+      }
+
     return (
         <div>
-
+            {renderFollowText()}
             <p> ID : {name} </p>
             <div> {tweetList ? tweetList.map((tweet,index)=> <SingleTweet tweet={tweet} key={index}/> ):''} </div>
 

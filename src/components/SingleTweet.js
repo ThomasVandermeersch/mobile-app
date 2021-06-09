@@ -42,8 +42,6 @@ export default function SingleTweet({tweet}) {
       else return (<Button variant="success" onClick={likeTweet}> Likeee </Button>);
     }
       
-
-
     return (
       <ListGroup.Item>
 
@@ -53,6 +51,7 @@ export default function SingleTweet({tweet}) {
           </Link>
           
           <h4> {tweet.title} </h4>
+          <img height="360" src={tweet.imgUrl} alt="Donald Trump"></img>
 
 
           <p>  {tweet.content} </p>

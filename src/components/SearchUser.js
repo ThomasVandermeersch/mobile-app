@@ -27,7 +27,8 @@ export default function SearchUser() {
   
     return (
         <div>
-
+        
+        <h1> Trouvez un utilisateur </h1>
         <p>Entrez un utilisateur :  <input type="text" onChange={searchInputChange}/> </p>
 
         <ul> {userList ? userList.map((user)=> 

@@ -10,6 +10,8 @@ import { Redirect } from "react-router";
 export default function Forme() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
+
   const [submit, setSubmit] = useState('')
 
 
@@ -19,6 +21,11 @@ export default function Forme() {
   const handleContentChange = (e) =>{
     setContent(e.target.value)
   };
+  const handleImgChange = (e) =>{
+    setImgUrl(e.target.value)
+  };
+
+
   var user = app.auth().currentUser;
   if (user != null) {
           console.log(user.displayName)
@@ -30,7 +37,8 @@ export default function Forme() {
     const todo = {
       title,
       content,
-      user
+      user,
+      imgUrl
     };
 
     todoRef.push(todo);
@@ -59,6 +67,11 @@ export default function Forme() {
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Your tweet</Form.Label>
             <Form.Control as="textarea" rows={3} onChange={handleContentChange} value={content} />
+          </Form.Group>
+
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Image URL (optionnal) </Form.Label>
+            <Form.Control type="text" placeholder="Enter a title here !" onChange={handleImgChange} value={imgUrl} />
           </Form.Group>
         
           <Button variant="secondary" onClick={createTodo}> Submit !</Button>

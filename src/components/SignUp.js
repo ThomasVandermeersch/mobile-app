@@ -33,7 +33,7 @@ const SignUp = ({ history }) => {
               
             });
         const usersRef = app.database().ref('Users');
-        usersRef.push({name:name.value});
+        usersRef.push({name:name.value,follow:[name.value]});
         history.push("/");
 
 
