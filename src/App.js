@@ -1,11 +1,11 @@
 import './App.css';
-import Forme from './components/Forme';
+import NewTweet from './components/NewTweet';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import UserProfile from './components/UserProfile'
 import Home from './components/Home'
 import SearchUser from './components/SearchUser'
-import Container  from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container'
 import Navigation from './components/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
@@ -21,21 +21,21 @@ function App() {
     <div className="App">
       <Router>
 
-      <Navigation/>
+        {/* Navigation bar  */}
+        <Navigation />
 
         <Container fluid="md">
           <AuthProvider>
-              <Switch>
-                <PrivateRoute path="/add" component={Forme}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/signup" component={SignUp}/>
-                <PrivateRoute path="/userProfile/:name" component={UserProfile}/>
-                <PrivateRoute path="/searchUser" component={SearchUser}/>
-
-                <PrivateRoute path="/" component={Home}/>
-              </Switch>
+            <Switch>
+              <PrivateRoute path="/add" component={NewTweet} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
+              <PrivateRoute path="/userProfile/:name" component={UserProfile} />
+              <PrivateRoute path="/searchUser" component={SearchUser} />
+              <PrivateRoute path="/" component={Home} />
+            </Switch>
           </AuthProvider>
-      </Container>
+        </Container>
       </Router>
 
     </div>

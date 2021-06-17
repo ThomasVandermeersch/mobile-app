@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Login = ({ history }) => {
+const Login = ({ history }) => { //internet - login
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -30,7 +30,7 @@ const Login = ({ history }) => {
     return <Redirect to="/" />;
   }
 
-  return (
+  return ( //render
     <div>
 
       <h2 style={{textAlign: "center"}}>Sign in </h2>

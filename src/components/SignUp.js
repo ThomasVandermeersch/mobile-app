@@ -11,7 +11,7 @@ const SignUp = ({ history }) => {
     event.preventDefault();
     const { email, name, password } = event.target.elements;
     
-    const userRef = app.database().ref('Users');
+    const userRef = app.database().ref('Users'); //check if pseudo in DB
     userRef.get().then(async (snapchot)=>{
       const users = snapchot.val()
       for(let id in users ){
